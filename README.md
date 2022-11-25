@@ -29,7 +29,7 @@ Logger.init(LogConfiguration.Builder()
         .logLevel(LogLevel.ALL)                                     //指定日志输出级别
         .addAdapter(AndroidLogAdapter(isLoggable = true))           // 添加控制台日志输出策略
         .addAdapter(DiskLogAdapter(DiskLogStrategy.Builder()        // 添加磁盘日志输出策略
-            .diskDirPath(getExternalFilesDir(null)?.absolutePath + "/log")
+            .diskDirPath(getExternalFilesDir(null)?.absolutePath + "/log") //指定日志输出目录，注意必须改参数必须指定，sdk内部不会创建默认日志输出目录
             .maxDiskDirSize(500, DiskSizeUnit.MB)                   // 指定日志文件夹的最大存储大小
             .maxDiskFileSize(2, DiskSizeUnit.MB)                    // 指定单个文件的最大存储大小
             .writerStrategy(WriterStrategy.BIO)                     // 写入策略，分为 BIO 和 NIO
