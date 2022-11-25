@@ -25,14 +25,16 @@ dependencies {
 ## 基本使用
 
 ```kotlin
-Logger.addAdapter(AndroidLogAdapter(isLoggable = true))      // 添加控制台日志输出策略             
-    .addAdapter(CustomerAdapter())                           // 可自定义日志输出策略，如上传七牛云，实现LogAdapter接口接口
-    .addAdapter(DiskLogAdapter(DiskLogStrategy.Builder()     // 添加磁盘日志输出策略
-        .maxDiskDirSize(100, DiskSizeUnit.GB)                // 指定日志文件夹的最大存储大小
-        .maxDiskFileSize(100, DiskSizeUnit.MB)               // 指定单个文件的最大存储大小
-        .formatter(DefaultFormatter())                       // 日志输出格式，可自定义实现Formatter接口即可
-        .writerStrategy(WriterStrategy.BIO)                  // 写入策略，分为 BIO、NIO、Native(C mmap 方法)
-        .build(), isLoggable = true))                        // 日志策略是否可用   
+Logger.init(LogConfiguration.Builder()
+        .logLevel(LogLevel.ALL)                                     //指定日志输出级别
+        .addAdapter(AndroidLogAdapter(isLoggable = true))           // 添加控制台日志输出策略
+        .addAdapter(DiskLogAdapter(DiskLogStrategy.Builder()        // 添加磁盘日志输出策略
+            .diskDirPath(getExternalFilesDir(null)?.absolutePath + "/log")
+            .maxDiskDirSize(500, DiskSizeUnit.MB)                   // 指定日志文件夹的最大存储大小
+            .maxDiskFileSize(2, DiskSizeUnit.MB)                    // 指定单个文件的最大存储大小
+            .writerStrategy(WriterStrategy.BIO)                     // 写入策略，分为 BIO 和 NIO
+            .build(), isLoggable = true))                           // 日志策略是否可用   
+        .build())
 ```
 
 ### NIO 写入策略使用注意
