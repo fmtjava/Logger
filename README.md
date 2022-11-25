@@ -2,6 +2,26 @@
 一款小巧的个性化日志库，支持原生 Android 控制台日志打印、磁盘写入日志并支持配置日志的输出策略、磁盘写入策略、日志拦截等功能
 
 
+## 项目集成
+1. Add it in your root build.gradle at the end of repositories(jitpack):
+
+```gradle
+allprojects {
+    repositories {
+		...
+		maven { url 'https://jitpack.io' }
+	}
+}
+```
+
+2. Add dependency to your project(jcenter):
+
+```gradle
+dependencies {
+        implementation 'com.github.fmtjava:Logger:1.0.0'
+}
+```
+
 ## 基本使用
 
 ```kotlin
