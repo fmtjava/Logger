@@ -32,7 +32,7 @@ Logger.init(LogConfiguration.Builder()
             .diskDirPath(getExternalFilesDir(null)?.absolutePath + "/log") //指定日志输出目录，注意必须改参数必须指定，sdk内部不会创建默认日志输出目录
             .maxDiskDirSize(500, DiskSizeUnit.MB)                   // 指定日志文件夹的最大存储大小
             .maxDiskFileSize(2, DiskSizeUnit.MB)                    // 指定单个文件的最大存储大小
-            .writerStrategy(WriterStrategy.BIO)                     // 写入策略，分为 BIO、NIO、Native(c mmap 方式)
+            .writerStrategy(WriterStrategy.BIO)                     // 写入策略，分为 BIO、NIO、Native(C mmap 方式)
             .build(), isLoggable = true))                           // 日志策略是否可用   
         .build())
 ```
