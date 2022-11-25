@@ -35,8 +35,8 @@ Logger.addAdapter(AndroidLogAdapter(isLoggable = true))      // 添加控制台�
         .build(), isLoggable = true))                        // 日志策略是否可用   
 ```
 
-### WriterStrategy.NIO 使用注意
-WriterStrategy.NIO 使用了mmap方法写入文件，但是Java没有公开unmap方法,所以采用了反射调用，但是这个方法被标记为私有了，所以必须借助以下方案绕过私有API限制
+### NIO 写入策略使用注意
+NIO 写入策略使用了mmap方法写入文件，但是Java没有公开unmap方法,所以采用了反射调用，但是这个方法被标记为私有了，所以必须借助以下方案绕过私有API限制
 1. Add it in your root build.gradle at the end of repositories(jitpack):
 
 ```gradle
@@ -63,6 +63,6 @@ protected void attachBaseContext(Context base) {
     Reflection.unseal(base);
 }
 ```
-
+如需使用 mmap 写入方式可使用 Native 方式，该方式使用了 JNI 调用 C 的 mmap 方法进行写入
 
 
