@@ -65,6 +65,6 @@ protected void attachBaseContext(Context base) {
     Reflection.unseal(base);
 }
 ```
-如需使用 mmap 写入方式可使用 Native 方式，该方式使用了 JNI 调用 C 的 mmap 方法进行写入
+如需使用 mmap 写入方式可使用 Native 策略方式，该方式使用了 JNI 调用 C 的 mmap 方法进行写入
 
 
